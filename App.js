@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Button, FlatList, Keyboard, StyleSheet, TextInput, View, Text } from 'react-native';
-
+import PrevisaoItem from './componentes/PrevisaoItem';
+import ENV from './env'
 export default function App() {
-  const endPoint = "https://api.openweathermap.org/data/2.5/forecast?lang=pt&units=metric&q="
-  const apiKey = "sua chave de api";
+  const endPoint = "https://api.openweathermap.org/data/2.5/forecast?lang=pt_br&units=metric&q="
+  const apiKey = ENV.apiKey;
   
   const [cidade, setCidade] = useState('');
   const [previsoes, setPrevisoes] = useState([]);
@@ -42,7 +43,7 @@ export default function App() {
           data={previsoes}
           renderItem={
             previsao => (
-              <Text>{JSON.stringify(previsao)}</Text>
+              <PrevisaoItem previsao={previsao.item}/>
             )
           }
         />
